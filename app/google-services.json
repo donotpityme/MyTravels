@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "659605439720",
+    "firebase_url": "https://my-travels-b4e15.firebaseio.com",
+    "project_id": "my-travels-b4e15",
+    "storage_bucket": "my-travels-b4e15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659605439720:android:822de7c8b75d66a2",
+        "android_client_info": {
+          "package_name": "com.example.administrator.mytravels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659605439720-2sj58sf7ta9s1sdl88bedkq88u0d3bf8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.administrator.mytravels",
+            "certificate_hash": "fda9886bc0ec98c716b316af418a06c0919b0dcb"
+          }
+        },
+        {
+          "client_id": "659605439720-i5gjp83dctj8a9q9d32aqggnpgfd30i1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9woJzyfDzq9yfSDiJVkOZD0djonXdw60"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659605439720-i5gjp83dctj8a9q9d32aqggnpgfd30i1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

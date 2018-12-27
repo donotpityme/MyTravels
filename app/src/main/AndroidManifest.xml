@@ -34,11 +34,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.administrator.mytravels.MainActivity" />
         </activity>
-        <activity android:name=".EditTravelContentActivity">
-        </activity>
+        <activity android:name=".EditTravelContentActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC9woJzyfDzq9yfSDiJVkOZD0djonXdw60"/>
+            android:value="AIzaSyC9woJzyfDzq9yfSDiJVkOZD0djonXdw60" />
     </application>
 
 </manifest>

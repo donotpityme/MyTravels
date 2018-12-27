@@ -2,13 +2,15 @@ package com.example.administrator.mytravels;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.example.administrator.mytravels.entity.Travel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends BaseActivity {
 
@@ -19,14 +21,12 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
-                Intent intent = new Intent(MainActivity.this,EditTravelsActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, EditTravelsActivity.class);
+                startActivityForResult(intent, REQCD_TRAVEL_ADD);
             }
         });
     }
@@ -51,5 +51,18 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) return;
+        switch (requestCode) {
+            case REQCD_TRAVEL_ADD: {
+                Travel travel = (Travel) data.getExtras().getSerializable(REQKEY_TRAVEL);
+
+            }
+            break;
+        }
     }
 }

@@ -6,6 +6,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_height="match_parent"
     tools:context=".EditTravelContentActivity">
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title_layout"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -81,6 +82,7 @@
             android:focusableInTouchMode="false"
             android:hint="Select end date" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnadd"
         style="@style/Widget.MaterialComponents.Button"

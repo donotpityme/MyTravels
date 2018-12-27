@@ -1,9 +1,9 @@
 package com.example.administrator.mytravels;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -13,7 +13,7 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_launcher);
 
-        Intent t = new Intent(LauncherActivity.this,MainActivity.class);
+        Intent t = new Intent(LauncherActivity.this, MainActivity.class);
         startActivity(t);
         finish();
     }

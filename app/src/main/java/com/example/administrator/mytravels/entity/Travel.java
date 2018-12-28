@@ -1,5 +1,7 @@
 package com.example.administrator.mytravels.entity;
 
+import com.example.administrator.mytravels.utils.MyDate;
+
 import java.io.Serializable;
 
 import androidx.annotation.NonNull;
@@ -75,6 +77,14 @@ public class Travel implements Serializable {
 
     public String getPlaceAddr() {
         return placeAddr;
+    }
+
+    public String getStartDtText() {
+        return MyDate.getString(startDt);
+    }
+
+    public String getEndDtText() {
+        return MyDate.getString(endDt);
     }
 
     public void setPlaceAddr(String placeAddr) {

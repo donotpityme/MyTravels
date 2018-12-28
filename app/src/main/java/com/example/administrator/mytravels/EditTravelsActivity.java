@@ -1,9 +1,12 @@
 package com.example.administrator.mytravels;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -35,6 +38,7 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
     private long mEndDt;
     private Place mPlace;
     private Travel mTravel;
+    private boolean mInEditMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,18 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (BaseActivity.REQACTION_EDIT_TRAVEL.equals(getIntent().getAction())) {
+            mInEditMode = true;
+            setTitle("Edit Travel");
+            mTravel = (Travel) getIntent().getExtras().getSerializable(REQKEY_TRAVEL);
+            mTitleEt.setText(mTravel.getTitle());
+            mStartDt = mTravel.getStartDt();
+            mStartDtEt.setText(mTravel.getStartDtText());
+            mEndDt = mTravel.getEndDt();
+            mEndDtEt.setText(mTravel.getEndDtText());
+            mPlaceEt.setText(mTravel.getPlaceName());
+        }
     }
 
     @Override
@@ -96,7 +112,7 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
             case R.id.place_et: {
                 try {
                     AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                            .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
+                            .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
                             .build();
                     Intent intent
                             = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
@@ -143,13 +159,20 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
             Snackbar.make(mTitleEt, "Start is empty!", Snackbar.LENGTH_SHORT).show();
             return;
         }
+        if (!mInEditMode&&mPlace==null){
+            Snackbar.make(mTitleEt, "City is empty!", Snackbar.LENGTH_SHORT).show();
+            return;
+        }
         if (mEndDt == 0) {
             Snackbar.make(mTitleEt, "Start is empty!", Snackbar.LENGTH_SHORT).show();
             return;
         }
         if (mTravel == null) {
             mTravel = new Travel(title);
+        }else {
+            mTravel.setTitle(title);
         }
+        //mTravel = new Travel(title);
         mTravel.setStartDt(mStartDt);
         mTravel.setEndDt(mEndDt);
         if (mPlace != null) {
@@ -177,5 +200,36 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
             }
             break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (mInEditMode){
+            getMenuInflater().inflate(R.menu.menu_edittravel,menu);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_travel_del:{
+                showAlertOkCancel("Are you sure you want to delete?",
+                        "All data for this travel will be permanently deleted.",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent returnIntent = new Intent();
+                                returnIntent.putExtra(REQKEY_TRAVEL,mTravel);
+                                returnIntent.setAction(REQACTION_DEL_TRAVEL);
+                                setResult(RESULT_OK,returnIntent);
+                                finish();
+                            }
+                        }
+                        ,null);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

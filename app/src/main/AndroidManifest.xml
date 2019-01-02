@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.administrator.mytravels">
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -34,11 +39,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.administrator.mytravels.MainActivity" />
         </activity>
-        <activity android:name=".EditTravelContentActivity"></activity>
+        <activity android:name=".EditTravelContentActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC9woJzyfDzq9yfSDiJVkOZD0djonXdw60" />
+
+        <activity android:name=".LoginActivity"/>
     </application>
 
 </manifest>

@@ -16,6 +16,18 @@ public interface TravelDao {
     @Query("SELECT * FROM travel ORDER BY id DESC") //theo thứ tự giảm dần
     LiveData<List<Travel>> getAllTravels();
 
+    @Query("SELECT * FROM travel ORDER BY title")
+    LiveData<List<Travel>> getAllTravelsbyTitleAsc();
+
+    @Query("SELECT * FROM travel ORDER BY title DESC")
+    LiveData<List<Travel>> getAllTravelsbyTitleDesc();
+
+    @Query("SELECT * FROM travel ORDER BY startDt")
+    LiveData<List<Travel>> getAllTravelsbyStartAsc();
+
+    @Query("SELECT * FROM travel ORDER BY startDt DESC")
+    LiveData<List<Travel>> getAllTravelsbyStartDesc();
+
     @Insert
     void insert(Travel travel);
 

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.administrator.mytravels.base.TravelSort;
 import com.example.administrator.mytravels.entity.Travel;
 import com.example.administrator.mytravels.main.TravelListAdapter;
 import com.example.administrator.mytravels.main.TravelViewModel;
@@ -64,23 +65,47 @@ public class MainActivity extends BaseActivity implements TravelListAdapter.List
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        TravelSort travelSort = ((MyApplication) getApplication()).getTravelSort();
+        switch (travelSort){
+            case DEFAULT:
+                menu.findItem(R.id.action_sort_default).setChecked(true);
+                break;
+            case TITLE_ASC:
+                menu.findItem(R.id.action_sort_travel_asc).setChecked(true);
+                break;
+            case TITLE_DESC:
+                menu.findItem(R.id.action_sort_travels_desc).setChecked(true);
+                break;
+            case START_ASC:
+                menu.findItem(R.id.action_sort_start_asc).setChecked(true);
+                break;
+            case START_DESC:
+                menu.findItem(R.id.action_sort_start_desc).setChecked(true);
+                break;
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_sort_default:
+                item.setChecked(true);
+                return true;
+            case R.id.action_sort_travel_asc:
+                item.setChecked(true);
+                return true;
+            case R.id.action_sort_travels_desc:
+                item.setChecked(true);
+                return true;
+            case R.id.action_sort_start_asc:
+                item.setChecked(true);
+                return true;
+            case R.id.action_sort_start_desc:
+                item.setChecked(true);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

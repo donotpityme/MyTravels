@@ -12,16 +12,21 @@
             <group
                 android:id="@+id/action_sort_group"
                 android:checkableBehavior="single">
-                <item android:id="@+id/action_sort_default"
-                     android:title="Default"/>
-                <item android:id="@+id/action_sort_travel_asc"
-                    android:title="Travel title ascending"/>
-                <item android:id="@+id/action_sort_travels_desc"
-                    android:title="Travel title descending"/>
-                <item android:id="@+id/action_sort_start_asc"
-                    android:title="Start date ascending"/>
-                <item android:id="@+id/action_sort_start_desc"
-                    android:title="Start date descending"/>
+                <item
+                    android:id="@+id/action_sort_default"
+                    android:title="Default" />
+                <item
+                    android:id="@+id/action_sort_travel_asc"
+                    android:title="Travel title ascending" />
+                <item
+                    android:id="@+id/action_sort_travels_desc"
+                    android:title="Travel title descending" />
+                <item
+                    android:id="@+id/action_sort_start_asc"
+                    android:title="Start date ascending" />
+                <item
+                    android:id="@+id/action_sort_start_desc"
+                    android:title="Start date descending" />
             </group>
         </menu>
     </item>

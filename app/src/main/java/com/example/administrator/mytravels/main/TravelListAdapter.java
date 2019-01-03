@@ -25,47 +25,47 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Tr
     private List<Travel> mList;
     private ListItemClickListener mListItemClickListener;
 
-    public TravelListAdapter(Context context){
+    public TravelListAdapter(Context context) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
     }
 
-    public void setList(List<Travel> list){
-        this.mList=list;
+    public void setList(List<Travel> list) {
+        this.mList = list;
         notifyDataSetChanged();
     }
 
-    private Travel getItem(int position){
-        if (getItemCount()==0) return null;
+    private Travel getItem(int position) {
+        if (getItemCount() == 0) return null;
         return mList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        if (getItemCount()==0) return RecyclerView.NO_ID;
+        if (getItemCount() == 0) return RecyclerView.NO_ID;
         return mList.get(position).getId();
     }
 
     @NonNull
     @Override
     public TravelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = mLayoutInflater.inflate(R.layout.main_travel_item,parent,false);
+        View v = mLayoutInflater.inflate(R.layout.main_travel_item, parent, false);
         return new TravelViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TravelViewHolder holder, int position) {
-        if (getItemCount()==0) return;
+        if (getItemCount() == 0) return;
         Travel item = mList.get(position);
         holder.titleTxt.setText(item.getTitle());
-        holder.placeTxt.setText(item.getPlaceName()+"/"+item.getPlaceAddr());
-        holder.dateTxt.setText(item.getStartDtText()+" ~ "+item.getEndDtText());
+        holder.placeTxt.setText(item.getPlaceName() + "/" + item.getPlaceAddr());
+        holder.dateTxt.setText(item.getStartDtText() + " ~ " + item.getEndDtText());
     }
 
     @Override
     public int getItemCount() {
-        if (mList==null)
-        return 0;
+        if (mList == null)
+            return 0;
         return mList.size();
     }
 
@@ -77,7 +77,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Tr
         mListItemClickListener = listItemClickListener;
     }
 
-    class TravelViewHolder extends RecyclerView.ViewHolder{
+    class TravelViewHolder extends RecyclerView.ViewHolder {
         private final TextView titleTxt;
         private final TextView placeTxt;
         private final TextView dateTxt;
@@ -106,7 +106,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Tr
                     Intent intent = new Intent(mContext, EditTravelsActivity.class);
                     intent.putExtra(BaseActivity.REQKEY_TRAVEL, travel);
                     intent.setAction(BaseActivity.REQACTION_EDIT_TRAVEL);
-                    ((MainActivity) mContext).startActivityForResult(intent,BaseActivity.REQCD_TRAVEL_EDIT);
+                    ((MainActivity) mContext).startActivityForResult(intent, BaseActivity.REQCD_TRAVEL_EDIT);
                 }
             });
         }

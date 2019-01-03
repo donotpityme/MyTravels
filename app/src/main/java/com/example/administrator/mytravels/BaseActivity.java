@@ -17,6 +17,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final String REQKEY_TRAVEL = "REQKEY_TRAVEL";
     public static final String REQACTION_EDIT_TRAVEL = "REQACTION_EDIT_TRAVEL";
     public static final String REQACTION_DEL_TRAVEL = "REQACTION_DEL_TRAVEL";
+    public static final String REQKEY_TRAVEL_ID = "REQKEY_TRAVEL_ID";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

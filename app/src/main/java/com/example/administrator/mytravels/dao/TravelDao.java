@@ -13,7 +13,8 @@ import androidx.room.Update;
 
 @Dao
 public interface TravelDao {
-    @Query("SELECT * FROM travel ORDER BY id DESC") //theo thứ tự giảm dần
+    @Query("SELECT * FROM travel ORDER BY id DESC")
+        //theo thứ tự giảm dần
     LiveData<List<Travel>> getAllTravels();
 
     @Query("SELECT * FROM travel ORDER BY title")
@@ -35,5 +36,5 @@ public interface TravelDao {
     void update(Travel travel);
 
     @Delete
-    void delete(Travel...travel);
+    void delete(Travel... travel);
 }

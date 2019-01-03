@@ -22,8 +22,8 @@ public class TravelRepository {
         mTravelDao = db.travelDao();
     }
 
-    public LiveData<List<Travel>> getAllTravels(TravelSort travelSort){
-        switch (travelSort){
+    public LiveData<List<Travel>> getAllTravels(TravelSort travelSort) {
+        switch (travelSort) {
             case DEFAULT:
                 return mTravelDao.getAllTravels();
             case TITLE_ASC:
@@ -56,7 +56,7 @@ public class TravelRepository {
 //        return mAllTravels;
 //    }
 
-    public void insert(Travel travels){
+    public void insert(Travel travels) {
         new insertAsyncTask(mTravelDao).execute(travels);
     }
 
@@ -75,7 +75,9 @@ public class TravelRepository {
         }
     }
 
-    public void update(Travel travels) {new updateAsyncTask(mTravelDao).execute(travels);}
+    public void update(Travel travels) {
+        new updateAsyncTask(mTravelDao).execute(travels);
+    }
 
     private static class updateAsyncTask extends AsyncTask<Travel, Void, Void> {
 
@@ -92,7 +94,9 @@ public class TravelRepository {
         }
     }
 
-    public void delete(Travel travels){new deleteAsyncTask(mTravelDao).execute(travels);}
+    public void delete(Travel travels) {
+        new deleteAsyncTask(mTravelDao).execute(travels);
+    }
 
     private static class deleteAsyncTask extends AsyncTask<Travel, Void, Void> {
 

@@ -8,6 +8,6 @@
         android:id="@+id/action_travel_del"
         android:title="Delete"
         app:showAsAction="ifRoom"
-        android:orderInCategory="100"/>
+        android:orderInCategory="100" />
 
 </menu>

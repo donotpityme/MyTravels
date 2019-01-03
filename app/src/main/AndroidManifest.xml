@@ -45,7 +45,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC9woJzyfDzq9yfSDiJVkOZD0djonXdw60" />
 
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".TravelDetailActivity"></activity>
     </application>
 
 </manifest>

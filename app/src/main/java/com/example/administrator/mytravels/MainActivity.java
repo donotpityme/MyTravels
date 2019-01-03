@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -22,7 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends BaseActivity implements TravelListAdapter.ListItemClickListener{
+public class MainActivity extends BaseActivity implements TravelListAdapter.ListItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private TravelViewModel mTravelViewModel;
     private TravelListAdapter mTravelListAdapter;
@@ -30,11 +31,10 @@ public class MainActivity extends BaseActivity implements TravelListAdapter.List
     private final Observer<List<Travel>> mTravelObserver = new Observer<List<Travel>>() {
         @Override
         public void onChanged(List<Travel> travels) {
-            Log.d(TAG, "onChanged: travel.size="+travels.size());
+            Log.d(TAG, "onChanged: travel.size=" + travels.size());
             mTravelListAdapter.setList(travels);
         }
     };
-
 
 
     @Override
@@ -60,14 +60,22 @@ public class MainActivity extends BaseActivity implements TravelListAdapter.List
         });
 
         mTravelViewModel = ViewModelProviders.of(this).get(TravelViewModel.class);
-        mTravelViewModel.getAllTravels().observe(this,mTravelObserver);
+        mTravelViewModel.getAllTravels().observe(this, mTravelObserver);
+        mTravelViewModel.setTravelSort(((MyApplication) getApplication()).getTravelSort());
+
+//        new RecyclerView().addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         TravelSort travelSort = ((MyApplication) getApplication()).getTravelSort();
-        switch (travelSort){
+        switch (travelSort) {
             case DEFAULT:
                 menu.findItem(R.id.action_sort_default).setChecked(true);
                 break;
@@ -89,20 +97,25 @@ public class MainActivity extends BaseActivity implements TravelListAdapter.List
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_sort_default:
+                mTravelViewModel.setTravelSort(TravelSort.DEFAULT);
                 item.setChecked(true);
                 return true;
             case R.id.action_sort_travel_asc:
+                mTravelViewModel.setTravelSort(TravelSort.TITLE_ASC);
                 item.setChecked(true);
                 return true;
             case R.id.action_sort_travels_desc:
+                mTravelViewModel.setTravelSort(TravelSort.TITLE_DESC);
                 item.setChecked(true);
                 return true;
             case R.id.action_sort_start_asc:
+                mTravelViewModel.setTravelSort(TravelSort.START_ASC);
                 item.setChecked(true);
                 return true;
             case R.id.action_sort_start_desc:
+                mTravelViewModel.setTravelSort(TravelSort.START_DESC);
                 item.setChecked(true);
                 return true;
         }
@@ -112,23 +125,23 @@ public class MainActivity extends BaseActivity implements TravelListAdapter.List
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "onActivityResult: requestCode= "+requestCode);
-        Log.d(TAG, "onActivityResult: resultCode= "+resultCode);
-        Log.d(TAG, "onActivityResult: data= "+data);
+        Log.d(TAG, "onActivityResult: requestCode= " + requestCode);
+        Log.d(TAG, "onActivityResult: resultCode= " + resultCode);
+        Log.d(TAG, "onActivityResult: data= " + data);
         if (resultCode != RESULT_OK) return;
         switch (requestCode) {
             case REQCD_TRAVEL_ADD: {
                 Travel travel = (Travel) data.getExtras().getSerializable(REQKEY_TRAVEL);
-                Log.d(TAG, "onActivityResult: travel= "+travel);
+                Log.d(TAG, "onActivityResult: travel= " + travel);
                 mTravelViewModel.insert(travel);
             }
             break;
-            case REQCD_TRAVEL_EDIT:{
+            case REQCD_TRAVEL_EDIT: {
                 Travel travel = (Travel) data.getExtras().getSerializable(REQKEY_TRAVEL);
-                Log.d(TAG, "onActivityResult: travel="+travel);
-                if (REQACTION_DEL_TRAVEL.equals(data.getAction())){
+                Log.d(TAG, "onActivityResult: travel=" + travel);
+                if (REQACTION_DEL_TRAVEL.equals(data.getAction())) {
                     mTravelViewModel.delete(travel);
-                }else mTravelViewModel.update(travel);
+                } else mTravelViewModel.update(travel);
             }
             break;
         }
@@ -136,7 +149,11 @@ public class MainActivity extends BaseActivity implements TravelListAdapter.List
 
     @Override
     public void onListItemClick(View view, int position, Travel travel) {
-        Log.d(TAG, "onListItemClick: position="+position);
-        Log.d(TAG, "onListItemClick: travel="+travel);
+        Log.d(TAG, "onListItemClick: position=" + position);
+        Log.d(TAG, "onListItemClick: travel=" + travel);
+
+        Intent intent = new Intent(MainActivity.this,TravelDetailActivity.class);
+        intent.putExtra(REQKEY_TRAVEL_ID,travel.getId());
+        startActivity(intent);
     }
 }

@@ -159,7 +159,7 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
             Snackbar.make(mTitleEt, "Start is empty!", Snackbar.LENGTH_SHORT).show();
             return;
         }
-        if (!mInEditMode&&mPlace==null){
+        if (!mInEditMode && mPlace == null) {
             Snackbar.make(mTitleEt, "City is empty!", Snackbar.LENGTH_SHORT).show();
             return;
         }
@@ -169,7 +169,7 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
         }
         if (mTravel == null) {
             mTravel = new Travel(title);
-        }else {
+        } else {
             mTravel.setTitle(title);
         }
         //mTravel = new Travel(title);
@@ -204,29 +204,29 @@ public class EditTravelsActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (mInEditMode){
-            getMenuInflater().inflate(R.menu.menu_edittravel,menu);
+        if (mInEditMode) {
+            getMenuInflater().inflate(R.menu.menu_edittravel, menu);
         }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_travel_del:{
+        switch (item.getItemId()) {
+            case R.id.action_travel_del: {
                 showAlertOkCancel("Are you sure you want to delete?",
                         "All data for this travel will be permanently deleted.",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent returnIntent = new Intent();
-                                returnIntent.putExtra(REQKEY_TRAVEL,mTravel);
+                                returnIntent.putExtra(REQKEY_TRAVEL, mTravel);
                                 returnIntent.setAction(REQACTION_DEL_TRAVEL);
-                                setResult(RESULT_OK,returnIntent);
+                                setResult(RESULT_OK, returnIntent);
                                 finish();
                             }
                         }
-                        ,null);
+                        , null);
             }
             return true;
         }

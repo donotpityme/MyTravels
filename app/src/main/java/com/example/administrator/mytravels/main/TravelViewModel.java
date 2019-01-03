@@ -8,7 +8,6 @@ import com.example.administrator.mytravels.entity.Travel;
 import com.example.administrator.mytravels.repository.TravelRepository;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
@@ -19,27 +18,29 @@ import androidx.lifecycle.Transformations;
 
 public class TravelViewModel extends AndroidViewModel {
     private final TravelRepository mRepository;
-    private LiveData<List<Travel>> mAllTravels;
+    //private LiveData<List<Travel>> mAllTravels;
 
     public TravelViewModel(@NonNull Application application) {
         super(application);
         mRepository = TravelRepository.getINSTANCE(application);
-        mAllTravels = mRepository.getAllTravels(TravelSort.DEFAULT);
+        //mAllTravels = mRepository.getAllTravels(TravelSort.DEFAULT);
+    }
+
+
+    private final MutableLiveData<TravelSort> mTravelSort = new MutableLiveData<>(); //class mo rong cua Livedata, mutable co the thay doi duoc gia tri con live data thi khong
+
+    public void setTravelSort(TravelSort option) {
+        mTravelSort.setValue(option); // livedata khong thuc hien duoc hanh dong nay
+        ((MyApplication) getApplication()).setTravelSort(option);
     }
 
     private final LiveData<List<Travel>> mAllTravels = Transformations.switchMap(mTravelSort,
             new Function<TravelSort, LiveData<List<Travel>>>() {
                 @Override
                 public LiveData<List<Travel>> apply(TravelSort input) {
-                    return mRepository.getAllTravels(option);
+                    return mRepository.getAllTravels(input);
                 }
             });
-
-    private final MutableLiveData<TravelSort> mTravelSort = new MutableLiveData<>();
-    public void setTravelSort(TravelSort option){
-        mTravelSort.setValue(option);
-        ((MyApplication) getApplication()).setTravelSort(option);
-    }
 
     public LiveData<List<Travel>> getAllTravels() {
 

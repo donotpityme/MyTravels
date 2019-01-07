@@ -10,4 +10,7 @@ public class MyString {
     public static boolean isNotEmpty(String s) {
         return !isEmpty(s);
     }
+    public static String getMoneyText(double amount) {
+        return String.format("%,.2f", amount).replace(".00", "");
+    }
 }

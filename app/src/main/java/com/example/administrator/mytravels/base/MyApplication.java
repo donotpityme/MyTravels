@@ -1,11 +1,9 @@
-package com.example.administrator.mytravels;
+package com.example.administrator.mytravels.base;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-
-import com.example.administrator.mytravels.base.TravelSort;
 
 public class MyApplication extends Application {
     private static final String TAG = MyApplication.class.getSimpleName();

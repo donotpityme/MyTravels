@@ -2,7 +2,7 @@ package com.example.administrator.mytravels.main;
 
 import android.app.Application;
 
-import com.example.administrator.mytravels.MyApplication;
+import com.example.administrator.mytravels.base.MyApplication;
 import com.example.administrator.mytravels.base.TravelSort;
 import com.example.administrator.mytravels.entity.Travel;
 import com.example.administrator.mytravels.repository.TravelRepository;

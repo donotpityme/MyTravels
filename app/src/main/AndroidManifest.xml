@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".base.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -46,7 +46,20 @@
             android:value="AIzaSyC9woJzyfDzq9yfSDiJVkOZD0djonXdw60" />
 
         <activity android:name=".LoginActivity" />
-        <activity android:name=".TravelDetailActivity"></activity>
+        <activity
+            android:name=".TravelDetailActivity"
+            android:label="Travel Detail"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".traveldetail.PlanDetailActivity"
+            android:label="@string/title_activity_plan_detail" />
+        <activity
+            android:name=".traveldetail.DiaryDetailActivity"
+            android:label="@string/title_activity_diary_detail" />
+        <activity
+            android:name=".traveldetail.ExpenseDetailActivity"
+            android:label="@string/title_activity_expense_detail"></activity>
     </application>
 
 </manifest>

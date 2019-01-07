@@ -15,4 +15,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_travel_detail">Travel Detail</string>
+    <string name="title_frag_daily_plans">Daily Plans</string>
+    <string name="title_frag_dairy">Diary</string>
+    <string name="title_frag_expenses">Expenses</string>
+    <string name="title_activity_plan_detail">PlanDetailActivity</string>
+    <string name="title_activity_diary_detail">DiaryDetailActivity</string>
+    <string name="title_activity_expense_detail">ExpenseDetailActivity</string>
 </resources>

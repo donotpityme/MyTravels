@@ -1,8 +1,10 @@
-package com.example.administrator.mytravels;
+package com.example.administrator.mytravels.base;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.administrator.mytravels.base.MyApplication;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;

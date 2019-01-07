@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.administrator.mytravels.BaseActivity;
+import com.example.administrator.mytravels.base.BaseActivity;
 import com.example.administrator.mytravels.EditTravelsActivity;
 import com.example.administrator.mytravels.MainActivity;
 import com.example.administrator.mytravels.R;

@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.administrator.mytravels.base.BaseActivity;
+import com.example.administrator.mytravels.base.MyApplication;
 import com.example.administrator.mytravels.base.TravelSort;
 import com.example.administrator.mytravels.entity.Travel;
 import com.example.administrator.mytravels.main.TravelListAdapter;
@@ -14,8 +16,6 @@ import com.example.administrator.mytravels.main.TravelViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;

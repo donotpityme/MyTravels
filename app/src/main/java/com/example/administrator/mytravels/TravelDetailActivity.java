@@ -1,10 +1,13 @@
 package com.example.administrator.mytravels;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.mytravels.base.BaseActivity;
+import com.example.administrator.mytravels.base.MyConst;
+import com.example.administrator.mytravels.main.TravelDetailViewModel;
 import com.example.administrator.mytravels.traveldetail.SectionsPagerAdapter;
 import com.example.administrator.mytravels.traveldetail.TravelDetailBaseFragment;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -12,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 public class TravelDetailActivity extends BaseActivity {
@@ -21,6 +25,7 @@ public class TravelDetailActivity extends BaseActivity {
     private ViewPager mViewPager;
     private CollapsingToolbarLayout mToolbarLayout;
     private TextView mSubtitle;
+    private TravelDetailViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,10 @@ public class TravelDetailActivity extends BaseActivity {
 
         mToolbarLayout = findViewById(R.id.toolbar_layout);
         //mSubtitle = findViewById(R.id.subtitle_txt);
-
+        long travelId = getIntent().getLongExtra(MyConst.REQKEY_TRAVEL_ID,0);
+        Log.d(TAG, "onCreate: travelId="+travelId);
+        mViewModel = ViewModelProviders.of(this).get(TravelDetailViewModel.class);
+        mViewModel.setTravelId(travelId);
 
     }
 

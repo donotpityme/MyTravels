@@ -4,6 +4,7 @@ package com.example.administrator.mytravels.database;
 import android.content.Context;
 
 import com.example.administrator.mytravels.dao.TravelDao;
+import com.example.administrator.mytravels.dao.TravelPlanDao;
 import com.example.administrator.mytravels.entity.Travel;
 import com.example.administrator.mytravels.entity.TravelDiary;
 import com.example.administrator.mytravels.entity.TravelExpense;
@@ -42,4 +43,6 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract TravelDao travelDao();
+
+    public abstract TravelPlanDao travelPlanDao();
 }

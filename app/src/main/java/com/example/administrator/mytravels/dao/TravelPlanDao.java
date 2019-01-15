@@ -14,12 +14,10 @@ import androidx.room.Update;
 public interface TravelPlanDao {
 
     @Query("SELECT * FROM travel_plan WHERE deleteYn=0 and travelId=:travelId ORDER BY dateTime DESC, Id DESC")
-
-    DataSource.Factory<Integer, TravelPlan> getAllPlansOfTravel(long travelId);
+    DataSource.Factory<Integer, TravelPlan> getAllPlanOfTravel(long travelId);
 
     @Query("SELECT * FROM travel_plan WHERE deleteYn=0 and travelId=:travelId and substr(dateTime,1,8) = substr(:dateTime,1,8) ORDER BY dateTime DESC, id DESC")
-
-    DataSource.Factory<Integer,TravelPlan> getPlansOnDate(long travelId, String dateTime);
+    DataSource.Factory<Integer,TravelPlan> getPlanOnDate(long travelId, String dateTime);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(TravelPlan... items);
@@ -34,5 +32,4 @@ public interface TravelPlanDao {
 
     @Query("UPDATE travel_plan SET deleteYn=0 WHERE deleteYn=1 and travelId=:travelId")
             void undeleteAllMarkedYes(long travelId);
-
 }
